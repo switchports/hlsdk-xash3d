@@ -25,9 +25,6 @@
 
 extern BEAM *pBeam;
 extern BEAM *pBeam2;
-extern TEMPENTITY *pFlare;	// Vit_amiN
-
-extern float g_lastFOV;			// Vit_amiN
 
 /// USER-DEFINED SERVER MESSAGE HANDLERS
 
@@ -50,10 +47,6 @@ int CHud::MsgFunc_ResetHUD( const char *pszName, int iSize, void *pbuf )
 
 	// reset concussion effect
 	m_iConcussionEffect = 0;
-
-	// Vit_amiN: reset the FOV
-	m_iFOV = 0;	// default_fov
-	g_lastFOV = 0.0f;
 
 	return 1;
 }
@@ -79,7 +72,6 @@ void CHud::MsgFunc_InitHUD( const char *pszName, int iSize, void *pbuf )
 
 	//Probably not a good place to put this.
 	pBeam = pBeam2 = NULL;
-	pFlare = NULL;	// Vit_amiN: clear egon's beam flare
 }
 
 int CHud::MsgFunc_GameMode( const char *pszName, int iSize, void *pbuf )
@@ -115,14 +107,10 @@ int CHud::MsgFunc_Damage( const char *pszName, int iSize, void *pbuf )
 
 int CHud::MsgFunc_Concuss( const char *pszName, int iSize, void *pbuf )
 {
-	int r, g, b;
 	BEGIN_READ( pbuf, iSize );
 	m_iConcussionEffect = READ_BYTE();
 	if( m_iConcussionEffect )
-	{
-		UnpackRGB( r, g, b, RGB_YELLOWISH );	// Vit_amiN: fixed
-		this->m_StatusIcons.EnableIcon( "dmg_concuss", r, g, b );
-	}
+		this->m_StatusIcons.EnableIcon( "dmg_concuss", 255, 160, 0 );
 	else
 		this->m_StatusIcons.DisableIcon( "dmg_concuss" );
 	return 1;

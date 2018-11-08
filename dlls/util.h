@@ -18,6 +18,21 @@
 //
 // Misc utility code
 //
+
+// HACK: this enables us to have two different symbols for this shit in
+// server and client static libs, eliminating linking conflicts without effort
+#ifdef __SWITCH__
+#ifdef CLIENT_DLL
+#define gpGlobals cl_gpGlobals
+#define g_engfuncs g_cl_engfuncs
+#define g_physfuncs g_cl_physfuncs
+#else
+#define gpGlobals sv_gpGlobals
+#define g_engfuncs g_sv_engfuncs
+#define g_physfuncs g_sv_physfuncs
+#endif
+#endif
+
 #ifndef ACTIVITY_H
 #include "activity.h"
 #endif
@@ -108,7 +123,11 @@ typedef int BOOL;
 // The _declspec forces them to be exported by name so we can do a lookup with GetProcAddress()
 // The function is used to intialize / allocate the object for the entity
 
+#ifdef CLIENT_DLL
+#define LINK_ENTITY_TO_CLASS(mapClassName,DLLClassName)
+#else
 #define LINK_ENTITY_TO_CLASS(mapClassName,DLLClassName) extern "C" EXPORT void mapClassName( entvars_t *pev ); void mapClassName( entvars_t *pev ) { GetClassPtr( (DLLClassName *)pev ); }
+#endif
 
 //
 // Conversion among the three types of "entity", including identity-conversions.

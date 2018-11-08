@@ -37,6 +37,9 @@ engine_studio_api_t IEngineStudio;
 #define LEGS_BONES_COUNT	8
 
 // enumerate all the bones that used for gait animation
+#ifdef __SWITCH__
+extern "C" const char *legs_bones[8];
+#else
 const char *legs_bones[] =
 {
 	"Bip01",
@@ -48,6 +51,7 @@ const char *legs_bones[] =
 	"Bip01 R Leg1",
 	"Bip01 R Foot" 
 };
+#endif
 
 /*
 ====================

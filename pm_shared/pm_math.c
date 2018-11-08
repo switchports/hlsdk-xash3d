@@ -29,9 +29,13 @@
 #pragma warning(disable : 4244)
 #endif
 
+#ifndef __SWITCH__
 vec3_t vec3_origin = { 0,0,0 };
+#endif
+
 int nanmask = 255 << 23;
 
+#ifndef __SWITCH__
 float anglemod( float a )
 {
 	a = ( 360.0 / 65536 ) * ( (int)( a * ( 65536 / 360.0 ) ) & 65535 );
@@ -72,6 +76,9 @@ void AngleVectors( const vec3_t angles, vec3_t forward, vec3_t right, vec3_t up 
 		up[2] = cr * cp;
 	}
 }
+#else
+float anglemod( float a );
+#endif
 
 void AngleVectorsTranspose( const vec3_t angles, vec3_t forward, vec3_t right, vec3_t up )
 {
@@ -194,6 +201,7 @@ FIXME:  Use Quaternions to avoid discontinuities
 Frac is 0.0 to 1.0 ( i.e., should probably be clamped, but doesn't have to be )
 ===================
 */
+#ifndef __SWITCH__
 void InterpolateAngles( float *start, float *end, float *output, float frac )
 {
 	int i;
@@ -223,6 +231,7 @@ void InterpolateAngles( float *start, float *end, float *output, float frac )
 
 	NormalizeAngles( output );
 }
+#endif
 
 /*
 ===================
@@ -386,6 +395,7 @@ void VectorMatrix( vec3_t forward, vec3_t right, vec3_t up )
 	VectorNormalize( up );
 }
 
+#ifndef __SWITCH__
 void VectorAngles( const vec3_t forward, vec3_t angles )
 {
 	float tmp, yaw, pitch;
@@ -414,3 +424,4 @@ void VectorAngles( const vec3_t forward, vec3_t angles )
 	angles[1] = yaw;
 	angles[2] = 0;
 }
+#endif

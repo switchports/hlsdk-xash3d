@@ -50,6 +50,24 @@ typedef unsigned char byte;
 #include "enginecallback.h"
 #endif
 
+// why is this fucking header file so weird
+// how is this good coding standards gaben
+// go die in a fire
+#ifdef __SWITCH__
+#ifdef CLIENT_DLL
+#define gpGlobals cl_gpGlobals
+#define g_engfuncs g_cl_engfuncs
+#define g_physfuncs g_cl_physfuncs
+#else
+#define gpGlobals sv_gpGlobals
+#define g_engfuncs g_sv_engfuncs
+#define g_physfuncs g_sv_physfuncs
+#endif
+
+extern enginefuncs_t g_engfuncs;
+
+#endif
+
 extern globalvars_t				*gpGlobals;
 
 #pragma warning( disable : 4244 )

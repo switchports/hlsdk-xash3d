@@ -54,6 +54,9 @@
 typedef unsigned int ULONG;
 typedef unsigned char BYTE;
 typedef int BOOL;
+#ifdef __SWITCH__
+#define PATH_MAX 256
+#endif
 #define MAX_PATH PATH_MAX
 #include <limits.h>
 #include <stdarg.h>
