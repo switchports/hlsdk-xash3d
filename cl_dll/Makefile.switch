@@ -1,0 +1,86 @@
+PREFIX    = $(DEVKITPRO)/devkitA64/bin/aarch64-none-elf
+CC        = $(PREFIX)-gcc
+CXX       = $(PREFIX)-g++
+AR        = $(PREFIX)-ar
+
+SRCS = ../dlls/crossbow.cpp \
+../dlls/crowbar.cpp \
+../dlls/egon.cpp \
+./ev_hldm.cpp \
+../dlls/gauss.cpp \
+../dlls/handgrenade.cpp \
+./hl/hl_baseentity.cpp \
+./hl/hl_events.cpp \
+./hl/hl_objects.cpp \
+./hl/hl_weapons.cpp \
+../dlls/glock.cpp \
+../dlls/hornetgun.cpp \
+../dlls/mp5.cpp \
+../dlls/python.cpp \
+../dlls/rpg.cpp \
+../dlls/satchel.cpp \
+../dlls/shotgun.cpp \
+../dlls/squeakgrenade.cpp \
+../dlls/tripmine.cpp \
+./ammo.cpp \
+./ammo_secondary.cpp \
+./ammohistory.cpp \
+./battery.cpp \
+./cdll_int.cpp \
+./com_weapons.cpp \
+./death.cpp \
+./demo.cpp \
+./entity.cpp \
+./ev_common.cpp \
+./events.cpp \
+./flashlight.cpp \
+./GameStudioModelRenderer.cpp \
+./geiger.cpp \
+./health.cpp \
+./hud.cpp \
+./hud_msg.cpp \
+./hud_redraw.cpp \
+./hud_spectator.cpp \
+./hud_update.cpp \
+./in_camera.cpp \
+./input.cpp \
+./input_mouse.cpp \
+./input_goldsource.cpp \
+./menu.cpp \
+./message.cpp \
+./overview.cpp \
+./parsemsg.cpp \
+./saytext.cpp \
+./status_icons.cpp \
+./statusbar.cpp \
+./studio_util.cpp \
+./StudioModelRenderer.cpp \
+./text_message.cpp \
+./train.cpp \
+./tri.cpp \
+./util.cpp \
+./view.cpp \
+./input_xash3d.cpp \
+./scoreboard.cpp \
+./MOTD.cpp \
+../utils/switch/switch_client.cpp
+
+SRCS_C = ../pm_shared/pm_debug.c \
+../pm_shared/pm_math.c \
+../pm_shared/pm_shared.c
+
+OBJS = $(SRCS:.cpp=.o) $(SRCS_C:.c=.o)
+
+INCLUDES = -I../common -I. -I../game_shared -I../pm_shared -I../engine -I../dlls -I../utils/false_vgui/include -I../utils/switch -include "classhacks.h" -include "../utils/switch/switch_defs.h"
+DEFINES = -Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -DCLIENT_WEAPONS -DCLIENT_DLL -D__SWITCH__
+CFLAGS = -march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -g3 -O2 -Wl,-q -Wfatal-errors -Wno-write-strings -fsigned-char -fno-lto -fno-short-enums  $(DEFINES) $(INCLUDES)
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-threadsafe-statics -fpermissive -static-libstdc++ -static-libgcc
+ASFLAGS = $(CFLAGS)
+
+all: libclient.a
+
+libclient.a: $(OBJS)
+	$(AR) rcs $@ $^
+
+clean:
+	@rm -rf libclient.a $(OBJS)
