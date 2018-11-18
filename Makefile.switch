@@ -1,4 +1,4 @@
-all: libclient.a libserver.a
+all: libserver.a libclient.a
 
 libserver.a:
 	$(MAKE) -C dlls -f Makefile.switch
