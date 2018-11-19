@@ -2455,7 +2455,7 @@ private:
 	BOOL m_bIsSuccess;
 	int m_iKills[3];
 	int m_iWounds[3];
-	float m_flAccuracyA[3];
+	float m_flAccuracy[3];
 };
 
 LINK_ENTITY_TO_CLASS( trigger_enddecay, CTriggerEndDecay )
@@ -2541,6 +2541,7 @@ void CTriggerEndDecay::Spawn()
 
 void CTriggerEndDecay::EndDecayUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
+	CBasePlayer *pPlayer = NULL;
 	while( true )
         {
                 pPlayer = (CBasePlayer*)UTIL_FindEntityByClassname( pPlayer, "player" );
