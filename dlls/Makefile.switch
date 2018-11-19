@@ -102,6 +102,12 @@ world.o  \
 xen.o  \
 zombie.o  \
 glock.o  \
+./bot/bot_combat.o  \
+./bot/bot.o  \
+./bot/botcam.o  \
+./bot/bot_combat.o  \
+./decay/displacer.o  \
+./decay/vortihands.o  \
 ../pm_shared/pm_debug.o \
 ../pm_shared/pm_math.o \
 ../pm_shared/pm_shared.o \
