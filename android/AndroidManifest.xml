@@ -3,7 +3,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="in.celest.xash3d.gearbox"
       android:versionCode="1"
-      android:versionName="1.0">
+      android:versionName="1.1">
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="5"/>
     <!-- Set your application name here -->
     <application     android:icon="@drawable/ic_launcher" 
@@ -12,7 +12,7 @@
     <!-- Set your launcher title here -->
         <activity android:name="in.celest.xash3d.LauncherActivity"
                android:label="Half-Life Opposing Force"
-	android:windowSoftInputMode="adjustResize">
+	android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

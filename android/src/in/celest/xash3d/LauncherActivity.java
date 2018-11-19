@@ -46,7 +46,7 @@ public class LauncherActivity extends Activity {
 		launcher.setBackgroundColor(0xFF252525);
 		TextView launcherTitle = new TextView(this);
         LayoutParams titleparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		titleparams.setMargins(5,15,5,1);//размеры верхнего layout
+		titleparams.setMargins(6,8,6,1);//размеры верхнего layout
 		LayoutParams buttonparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		buttonparams.setMargins(10,20,10,20);//размеры строки для ввода аргументов
 		launcherTitle.setLayoutParams(titleparams);
@@ -56,16 +56,7 @@ public class LauncherActivity extends Activity {
         launcherTitle.setTextAppearance(this, android.R.attr.textAppearanceMedium);
 		launcherTitle.setTextSize(25);
 		launcherTitle.setBackgroundColor(0xFF555555);
-		launcherTitle.setCompoundDrawablePadding(10);
-		try
-		{
-			launcherTitle.setCompoundDrawablesWithIntrinsicBounds(getApplicationContext().getPackageManager().getApplicationIcon(getPackageName()),null,null,null);
-			launcherTitle.setPadding(9,9,6,0);
-		}
-		catch(Exception e)
-		{
-			launcherTitle.setPadding(60,6,6,6);
-		}
+
 		launcher.addView(launcherTitle);
 		LinearLayout launcherBody = new LinearLayout(this);
         launcherBody.setOrientation(LinearLayout.VERTICAL);
