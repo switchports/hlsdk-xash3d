@@ -1529,7 +1529,7 @@ void V_CalcSpectatorRefdef( struct ref_params_s * pparams )
 	VectorCopy( v_origin, pparams->vieworg );
 }
 
-void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
+void DLLEXPORT V_CalcRefdef_CL( struct ref_params_s *pparams )
 {
 	// intermission / finale rendering
 	if( pparams->intermission )
