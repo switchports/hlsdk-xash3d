@@ -1,4 +1,4 @@
-//========= Copyright © 2004-2008, Raven City Team, All rights reserved. ============//
+//========= Copyright 2004-2008, Raven City Team, All rights reserved. ============//
 //																					 //
 // Purpose:																			 //
 //																					 //
