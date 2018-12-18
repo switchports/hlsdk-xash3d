@@ -1373,7 +1373,7 @@ void CRopeSegment::Touch( CBaseEntity* pOther )
 				pOther->SetAbsOrigin( data->mPosition );
 
 				pPlayer->SetOnRopeState( true );
-				pPlayer->SetRope( m_Sample->GetMasterRope() );
+				pPlayer->m_pRope = m_Sample->GetMasterRope();
 				m_Sample->GetMasterRope()->AttachObjectToSegment( this );
 
 				const Vector& vecVelocity = pOther->pev->velocity;
