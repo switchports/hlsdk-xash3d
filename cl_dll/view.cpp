@@ -41,7 +41,7 @@ extern "C"
 	int CL_IsThirdPerson( void );
 	void CL_CameraOffset( float *ofs );
 
-	void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams );
+	void DLLEXPORT V_CalcRefdef_CL( struct ref_params_s *pparams );
 
 	void PM_ParticleLine( float *start, float *end, int pcolor, float life, float vert );
 	int PM_GetInfo( int ent );
@@ -1487,7 +1487,7 @@ void V_CalcSpectatorRefdef( struct ref_params_s *pparams )
 	VectorCopy( v_origin, pparams->vieworg );
 }
 
-void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
+void DLLEXPORT V_CalcRefdef_CL( struct ref_params_s *pparams )
 {
 	// intermission / finale rendering
 	if( pparams->intermission )

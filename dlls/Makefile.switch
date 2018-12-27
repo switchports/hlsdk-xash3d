@@ -1,0 +1,75 @@
+PREFIX    = $(DEVKITPRO)/devkitA64/bin/aarch64-none-elf
+CC        = $(PREFIX)-gcc
+CXX       = $(PREFIX)-g++
+AR        = $(PREFIX)-ar
+
+OBJS = animating.o \
+animation.o \
+bmodels.o \
+buttons.o \
+cbase.o \
+client.o \
+combat.o \
+doors.o \
+effects.o \
+explode.o \
+func_break.o \
+game.o \
+gamerules.o \
+globals.o \
+h_ai.o \
+h_export.o \
+lights.o \
+maprules.o \
+monsters.o \
+mpstubb.o \
+multiplay_gamerules.o \
+pathcorner.o \
+plane.o \
+plats.o \
+player.o \
+schedule.o \
+singleplay_gamerules.o \
+skill.o \
+sound.o \
+spectator.o \
+subs.o \
+teamplay_gamerules.o \
+triggers.o \
+util.o \
+weapons.o \
+world.o \
+3wave/flags.o \
+3wave/grapple.o \
+3wave/runes.o \
+3wave/threewave_gamerules.o \
+aghl/agarena.o \
+aghl/agglobal.o \
+aghl/aglms.o \
+aghl/agspectator.o \
+aghl/agtimer.o \
+dmc/quake_gun.o \
+dmc/quake_items.o \
+dmc/quake_nail.o \
+dmc/quake_player.o \
+dmc/quake_rocket.o \
+dmc/quake_weapons_all.o \
+dmc/observer.o \
+../pm_shared/pm_debug.o \
+../pm_shared/pm_math.o \
+../pm_shared/pm_shared.o \
+../utils/switch/switch_server.o
+
+INCLUDES = -I. -I./wpn_shared -I../common -I../engine/common -I../engine -I../public -I../pm_shared -I../game_shared -I.. -I./3wave -I./aghl -I./dmc -I../utils/switch -include "../utils/switch/switch_defs.h"
+DEFINES = -Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -DCLIENT_WEAPONS -DNO_VOICEGAMEMGR -D__SWITCH__
+CFLAGS = -march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -g3 -O2 -Wl,-q -Wfatal-errors -Wno-write-strings -fsigned-char -fno-lto -fno-short-enums $(DEFINES) $(INCLUDES)
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-threadsafe-statics -fpermissive -static-libstdc++ -static-libgcc -Wno-invalid-offsetof
+ASFLAGS = $(CFLAGS)
+
+all: libserver.a
+
+libserver.a: $(OBJS)
+	$(AR) rcs $@ $^
+
+clean:
+	@rm -rf libserver.a $(OBJS)
