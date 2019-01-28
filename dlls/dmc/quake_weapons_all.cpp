@@ -46,6 +46,7 @@ extern float g_flLightTime;
 // called by worldspawn
 void QuakeClassicPrecache( void )
 {
+#ifndef __SWITCH__
 	// Weapon sounds
 	PRECACHE_SOUND("weapons/ax1.wav");
 	PRECACHE_SOUND("player/axhit2.wav");
@@ -114,6 +115,7 @@ void QuakeClassicPrecache( void )
 
 	if( g_bIsThreeWave )
 		PRECACHE_MODEL("models/v_grapple.mdl");
+#endif
 }
 
 //================================================================================================
