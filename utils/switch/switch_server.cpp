@@ -333,6 +333,7 @@ void item_antidote( entvars_t *pev );
 void item_longjump( entvars_t *pev );
 void func_door_rotating( entvars_t *pev );
 void func_tank( entvars_t *pev );
+void monster_human_torch_ally( entvars_t *pev );
 void monster_human_torch_ally_dead( entvars_t *pev );
 void player_weaponstrip( entvars_t *pev );
 void light_spot( entvars_t *pev );
@@ -679,6 +680,7 @@ dllexport_t switch_server_exports[] = {
 	{ "item_longjump", (void*)item_longjump },
 	{ "func_door_rotating", (void*)func_door_rotating },
 	{ "func_tank", (void*)func_tank },
+	{ "monster_human_torch_ally", (void*)monster_human_torch_ally },
 	{ "monster_human_torch_ally_dead", (void*)monster_human_torch_ally_dead },
 	{ "player_weaponstrip", (void*)player_weaponstrip },
 	{ "light_spot", (void*)light_spot },
